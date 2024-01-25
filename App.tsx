@@ -1,21 +1,32 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- */
-
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { Alert, Button, Image, SafeAreaView, StyleSheet, Text, View } from 'react-native';
+import BootSplash from "react-native-bootsplash";
 
 function App(): React.JSX.Element {
+  const [isReady, setIsReady] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setIsReady(true), 3000);
+  }, [])
+
+  useEffect(() => {
+    if (isReady) {
+      BootSplash.hide({ fade: true });
+    }
+  }, [isReady])
+
   return (
-    <View style={{
+    <SafeAreaView style={{
       alignItems: 'center',
       justifyContent: 'center',
     }}>
       <Text>LORD PIDOR</Text>
-    </View >
+      <Button title={'btn'} onPress={() => Alert.alert('ALERT', 'press option', [
+        { text: 'title', onPress: () => console.log('press') },
+        { text: 'cancel', onPress: () => console.log('pressed') }
+      ])}
+      />
+    </SafeAreaView >
   );
 }
 
