@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Alert, Button, Image, ImageBackground, StyleSheet, Text, TextInput, TouchableOpacity, View } from "react-native";
+import { Image, StyleSheet, Text, TextInput, View } from "react-native";
 import RNSecureStorage, { ACCESSIBLE } from "rn-secure-storage";
 import { USER_NAME_KEY } from "../utils/const";
+import { OpacityButton } from "./items/opacity-button";
 
 interface UserNameFormProps {
     setName: (s: string | null) => void;
@@ -36,17 +37,7 @@ export const UserNameForm = ({ setName }: UserNameFormProps) => {
                         onSubmitEditing={submitName}
                         placeholder="Rudick"
                     />
-                    <TouchableOpacity
-                        onPress={submitName}
-                        style={styles.button}
-                    >
-                        <View style={{ alignItems: 'center' }}>
-                            <View>
-                                <Text style={styles.buttonText}>Enter</Text>
-                            </View>
-                        </View>
-
-                    </TouchableOpacity>
+                    <OpacityButton onPress={submitName} title='Enter' />
                 </View>
             </View >
         </>
@@ -81,17 +72,5 @@ const styles = StyleSheet.create({
     label: {
         color: 'white',
         fontSize: 40
-    },
-    button: {
-        width: '80%',
-        backgroundColor: '#fa8128',
-        padding: 10,
-        borderRadius: 12,
-        display: 'flex',
-        justifyContent: 'center',
-        textAlign: 'center'
-    },
-    buttonText: {
-        fontSize: 20,
     },
 })
